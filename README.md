@@ -1,4 +1,4 @@
-# InvEnNet
+# Inv-EnNet
 
 ## Requirements
 
