@@ -1,0 +1,68 @@
+{
+    "name": "InvEnNet_default",
+    "n_gpu": 1,
+    "arch": {
+        "type": "InvEnNet",
+        "args": {}
+    },
+    "discriminator": {
+        "global_layer": 4
+    },
+    "data_loader": {
+        "type": "EGANDataLoader",
+        "args": {
+            "batch_size": 24,
+            "fine_size": 224,
+            "num_workers": 0,
+            "training": true,
+            "shuffle": true,
+            "validation_split": 0.0
+        }
+    },
+
+    "valid_data_loader": {
+        "type": "EGANDataLoader",
+        "args": {
+            "batch_size": 1,
+            "fine_size": 0,
+            "num_workers": 0,
+            "training": false,
+            "shuffle": false,
+            "validation_split": 0.0
+        }
+    },
+
+    "optimizer": {
+        "type": "Adam",
+        "args": {
+            "lr": 0.00001
+        }
+    },
+    "optimizer_D": {
+        "type": "Adam",
+        "args": {
+            "lr": 0.00001,
+            "betas": [
+                0.5,
+                0.999
+            ]
+        }
+    },
+    "loss": "GANLoss",
+    "metrics": [],
+    "trainer": {
+        "type": "DefaultTrainer",
+        "guided_vgg_weight": 0.5,
+        "last_only": false,
+        "consistency_weight": 150,
+	    "IAF_weight": 1,
+        "args": {},
+        "epochs": 400,
+        "save_dir": "saved/",
+        "save_period": 1,
+        "verbosity": 2,
+        "monitor": "off",
+        "tensorboard": true
+    },
+    "fitting_path": "./fitting"
+}
